@@ -1,4 +1,4 @@
-from __init__ import CONN, CURSOR
+from models.__init__ import CONN, CURSOR
 
 class Book:
 
@@ -74,7 +74,7 @@ class Book:
     
     @classmethod
     def instance_from_db(cls, row):
-        book = cls.all[row[0]]
+        book = cls.all.get(row[0])
         if book:
             book.title = row[1]
             book.author = row[2]

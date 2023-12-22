@@ -1,27 +1,42 @@
 # lib/cli.py
+from rich.console import Console
+from rich.table import Table
+from rich.prompt import Prompt
 
 from helpers import (
+    view_libraries,
+    view_library_books,
+    search_book_by_location,
     exit_program,
-    helper_1
 )
 
-
+def create_rows(table, row_names):
+    for i, name in enumerate(row_names):
+        table.add_row(f"{i+1}", f"{name}")
+    
 def main():
     while True:
         menu()
-        choice = input("> ")
-        if choice == "0":
+        choice = Prompt.ask("What would you like to do?")
+        if choice == "1":
+            view_libraries()
+        elif choice == "2":
+            view_library_books()
+        elif choice == "3":
+            search_book_by_location()
+        elif choice == "4":
             exit_program()
-        elif choice == "1":
-            helper_1()
         else:
             print("Invalid choice")
 
 
 def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
+    table = Table()
+    table.add_column("",style="purple")
+    table.add_column("Main Menu", style="purple", header_style='purple')
+    create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Exit"])
+    console = Console()
+    console.print(table)
 
 
 if __name__ == "__main__":

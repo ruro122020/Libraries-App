@@ -2,10 +2,10 @@ from models.Book import Book
 from models.Library import Library
 
 def seed_database():
-  Library.create_table()
   Library.drop_table()
+  Library.create_table()
 
-  Book.create_table()
+  Book.drop_table()
   Book.create_table()
 
   nooks = Library.create("Nooks")

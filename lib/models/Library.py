@@ -1,4 +1,4 @@
-from __init__ import CONN, CURSOR
+from models.__init__ import CONN, CURSOR
 
 class Library:
     all = {}
@@ -14,10 +14,9 @@ class Library:
     @name.setter
     def name(self, name):
         if isinstance(name, str) and len(name):
-            new_name = name.capitalize()
-            self._name = name
+            self._name = name.capitalize()
         else:
-            raise ValueError('name must be of type string')
+            raise ValueError('name must be of type string and more than 1 character')
     
     @classmethod
     def create_table(self):
@@ -47,7 +46,7 @@ class Library:
     
     @classmethod
     def instance_from_db(cls, row):
-        library = cls.all[row[0]]
+        library = cls.all.get(row[0])
 
         if library:
           library.name = row[1]
@@ -120,7 +119,7 @@ class Library:
         self.id = None
 
     def books(self):
-        from book import Book
+        from models.Book import Book
         sql = """
             SELECT * FROM books
             WHERE library_id = ?
