@@ -18,6 +18,7 @@ def view_libraries():
 
 def view_library_books():
     while True:
+      view_libraries()
       library_name = Prompt.ask("Enter Library Name")
       library = Library.find_by_name(library_name)
       if library:
@@ -30,18 +31,32 @@ def view_library_books():
           for i, book in enumerate(books):
               table.add_row(f"{i+1}",str(book.title), str(book.author), str(book.published_year))
           console.print(table)
+          break
       else:
-          console.print("invalid choice", style='red')
+          console.print("Invalid Name", style='red')
 
 def search_book_by_location():
+    book_title = Prompt.ask("Enter Book Title")
+    books = []
+    all_books = Book.get_all()
+
+    for book in all_books:
+        if book.title == book_title.capitalize():
+            books.append(book)
+
     table = Table()
-    table.add_column("", style='bold magenta')
+    table.add_column("")
     table.add_column("Title")
     table.add_column("Author")
     table.add_column("Published Year")
-    table.add_column("Library Locations")
+    table.add_column("Library")
 
-    print('list of libraries that holds book')
+    for i, book in enumerate(books):
+        library = Library.find_by_id(book.library_id)
+        print(type(library.name))
+        table.add_row(f"{i+1}", str(book.title), str(book.author), str(book.published_year), library.name)
+
+    console.print(table)
 
 def exit_program():
     print("Goodbye!")

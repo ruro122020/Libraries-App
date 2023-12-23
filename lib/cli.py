@@ -10,10 +10,13 @@ from helpers import (
     exit_program,
 )
 
+console = Console()
+
 def create_rows(table, row_names):
     for i, name in enumerate(row_names):
         table.add_row(f"{i+1}", f"{name}")
     
+
 def main():
     while True:
         menu()
@@ -27,7 +30,8 @@ def main():
         elif choice == "4":
             exit_program()
         else:
-            print("Invalid choice")
+            console.print("Invalid Choice", style='red')
+
 
 
 def menu():
@@ -35,9 +39,7 @@ def menu():
     table.add_column("",style="purple")
     table.add_column("Main Menu", style="purple", header_style='purple')
     create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Exit"])
-    console = Console()
     console.print(table)
-
 
 if __name__ == "__main__":
     main()
