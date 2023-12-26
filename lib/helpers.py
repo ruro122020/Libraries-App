@@ -25,13 +25,7 @@ def get_authors_books(author):
 def get_all_data():
   libraries = Library.get_all()
   books = Book.get_all()
-  data = []
-  #{
-  # library: 
-  # book_title:
-  # book_Author:
-  #}
-  #Library Name | Book Title |  Book Author 
+  data = [] 
   for library in libraries:
      for book in books:
         data.append({
@@ -44,8 +38,8 @@ def get_all_data():
 def view_libraries():
     libraries_list = Library.get_all()
     table = Table(title="Libraries")
-    table.add_column("", style="cyan")
-    table.add_column("Name", justify="right", style="cyan", header_style="cyan")
+    table.add_column("")
+    table.add_column("Name")
     for i, library in enumerate(libraries_list):
         table.add_row(f"{i+1}", library.name)
     console.print(table)
@@ -108,17 +102,16 @@ def author_books():
 
 def view_all():
   data = get_all_data()
-  print('data',data)
   if data:
     #create table
-    table = Table()
+    table = Table(title="Libraries and Books")
     table.add_column("")
-    table.add_column("Library")
+    table.add_column("Library Name")
     table.add_column("Title")
     table.add_column("Author")
-    table.add_column("Published Year")
     for i, obj in enumerate(data):
-       table.add_row(f"{i+1}", str(obj.library), str(obj.book_title), str(obj.book_author))
+      table.add_row(f"{i+1}", obj['library'], obj['book_title'], obj['book_author'])
+    console.print(table)
   else: 
     console.print("Data Does Not Exists", style = 'red')
 
