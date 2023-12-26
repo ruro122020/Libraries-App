@@ -20,7 +20,7 @@ def get_authors_books(author):
   for book in Book.get_all():
     if book.author == author.title():
       authors_books.append(book)
-  return author_books
+  return authors_books
 ####
 def view_libraries():
     libraries_list = Library.get_all()
@@ -56,7 +56,7 @@ def search_book_by_location():
     if books:
       table = Table()
       table.add_column("")
-      table.add_column("title")
+      table.add_column("Title")
       table.add_column("Author")
       table.add_column("Published Year")
       table.add_column("Library")
@@ -72,9 +72,23 @@ def search_book_by_location():
 def author_books():
   author = Prompt.ask("Enter Author's name")
   books = get_authors_books(author)
+  if books:
+    table = Table()
+    table.add_column("")
+    table.add_column("Title")
+    table.add_column("Author")
+    table.add_column("Published Year")
+    table.add_column("Library")
+    for i, book in enumerate(books):
+      library = Library.find_by_id(book.library_id)
+      table.add_row(f"{i+1}", str(book.title), str(book.author), str(book.published_year), str(library.name))
+    console.print(table)
+  else:
+    console.print("No Books By Author Found", style='red')
+      
 
-  
-  
+
+
 
 def exit_program():
     print("Goodbye!")
