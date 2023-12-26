@@ -52,9 +52,7 @@ def seed_database():
   Book.create("Spiderman", "Spike Castle", 1930, campbell.id)
   Book.create("Captain America", "Spike Castle", 1930, campbell.id)
   Book.create("Attack on Titans", "Spike Castle", 1930, campbell.id)
-  Book.create("Attack on Titans Part II", "Spike Castle", 1930, campbell.id)
+  Book.create("Attack on Titans Part 2", "Spike Castle", 1930, campbell.id)
 
-
- 
 seed_database()
 print("data seeded")

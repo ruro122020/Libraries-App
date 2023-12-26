@@ -21,6 +21,25 @@ def get_authors_books(author):
     if book.author == author.title():
       authors_books.append(book)
   return authors_books
+
+def get_all_data():
+  libraries = Library.get_all()
+  books = Book.get_all()
+  data = []
+  #{
+  # library: 
+  # book_title:
+  # book_Author:
+  #}
+  #Library Name | Book Title |  Book Author 
+  for library in libraries:
+     for book in books:
+        data.append({
+          "library": library.name,
+          "book_title": book.title,
+          "book_author": book.author
+        })
+  return data
 ####
 def view_libraries():
     libraries_list = Library.get_all()
@@ -73,7 +92,7 @@ def author_books():
   author = Prompt.ask("Enter Author's name")
   books = get_authors_books(author)
   if books:
-    table = Table()
+    table = Table(title="Author's Book")
     table.add_column("")
     table.add_column("Title")
     table.add_column("Author")
@@ -85,11 +104,24 @@ def author_books():
     console.print(table)
   else:
     console.print("No Books By Author Found", style='red')
-      
 
 
-
+def view_all():
+  data = get_all_data()
+  print('data',data)
+  if data:
+    #create table
+    table = Table()
+    table.add_column("")
+    table.add_column("Library")
+    table.add_column("Title")
+    table.add_column("Author")
+    table.add_column("Published Year")
+    for i, obj in enumerate(data):
+       table.add_row(f"{i+1}", str(obj.library), str(obj.book_title), str(obj.book_author))
+  else: 
+    console.print("Data Does Not Exists", style = 'red')
 
 def exit_program():
-    print("Goodbye!")
+    console.print("Goodbye!", style="green")
     exit()
