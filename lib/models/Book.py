@@ -17,7 +17,7 @@ class Book:
     @title.setter
     def title(self, title):
         if isinstance(title, str) and len(title):
-            self._title = title.capitalize()
+            self._title = title.title()
         else:
             raise ValueError('title must be of type string')
         
@@ -27,7 +27,7 @@ class Book:
     @author.setter
     def author(self, author):
         if isinstance(author, str) and len(author):
-            self._author = author.capitalize()
+            self._author = author.title()
         else:
             raise ValueError('author must be of type string')
     

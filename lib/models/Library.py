@@ -14,7 +14,7 @@ class Library:
     @name.setter
     def name(self, name):
         if isinstance(name, str) and len(name):
-            self._name = name.capitalize()
+            self._name = name.title()
         else:
             raise ValueError('name must be of type string and more than 1 character')
     

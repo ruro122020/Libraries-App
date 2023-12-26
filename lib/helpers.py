@@ -6,7 +6,15 @@ from models.Book import Book
 from models.Library import Library
 
 console = Console()
-
+##helper
+def get_books(book_title):
+    all_books = Book.get_all()
+    books = []
+    for book in all_books:
+        if book.title == book_title.title():
+            books.append(book)
+    return books
+####
 def view_libraries():
     libraries_list = Library.get_all()
     table = Table(title="Libraries")
@@ -37,26 +45,23 @@ def view_library_books():
 
 def search_book_by_location():
     book_title = Prompt.ask("Enter Book Title")
-    books = []
-    all_books = Book.get_all()
+    books = get_books(book_title)
+    if books:
+      table = Table()
+      table.add_column("")
+      table.add_column("title")
+      table.add_column("Author")
+      table.add_column("Published Year")
+      table.add_column("Library")
 
-    for book in all_books:
-        if book.title == book_title.capitalize():
-            books.append(book)
-
-    table = Table()
-    table.add_column("")
-    table.add_column("Title")
-    table.add_column("Author")
-    table.add_column("Published Year")
-    table.add_column("Library")
-
-    for i, book in enumerate(books):
+      for i,book in enumerate(books):
         library = Library.find_by_id(book.library_id)
-        print(type(library.name))
-        table.add_row(f"{i+1}", str(book.title), str(book.author), str(book.published_year), library.name)
+        table.add_row(f"{i+1}", str(book.title), str(book.author), str(book.published_year), str(library.name))
+      console.print(table)
+    else:
+      console.print("Book Title Not Found", style="red")
 
-    console.print(table)
+    
 
 def exit_program():
     print("Goodbye!")
