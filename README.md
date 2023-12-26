@@ -10,7 +10,7 @@ then, run python lib/seed.py
 
 then, run python lib/cli.py
 
-You should see a menu that looks like this:
+A menu should pop up that looks like this:
 
 ![alt text](./media/library%20main%20menu.png "Main Menu")
 
