@@ -7,13 +7,20 @@ from models.Library import Library
 
 console = Console()
 ##helper
-def get_books(book_title):
+def books_(book_title):
     all_books = Book.get_all()
     books = []
     for book in all_books:
         if book.title == book_title.title():
             books.append(book)
     return books
+
+def get_authors_books(author):
+  authors_books = []
+  for book in Book.get_all():
+    if book.author == author.title():
+      authors_books.append(book)
+  return author_books
 ####
 def view_libraries():
     libraries_list = Library.get_all()
@@ -45,7 +52,7 @@ def view_library_books():
 
 def search_book_by_location():
     book_title = Prompt.ask("Enter Book Title")
-    books = get_books(book_title)
+    books = books_(book_title)
     if books:
       table = Table()
       table.add_column("")
@@ -62,6 +69,12 @@ def search_book_by_location():
       console.print("Book Title Not Found", style="red")
 
     
+def author_books():
+  author = Prompt.ask("Enter Author's name")
+  books = get_authors_books(author)
+
+  
+  
 
 def exit_program():
     print("Goodbye!")

@@ -7,6 +7,7 @@ from helpers import (
     view_libraries,
     view_library_books,
     search_book_by_location,
+    author_books,
     exit_program,
 )
 
@@ -28,6 +29,8 @@ def main():
         elif choice == "3":
             search_book_by_location()
         elif choice == "4":
+            author_books()
+        elif choice == "5":
             exit_program()
         else:
             console.print("Invalid Choice", style='red')
@@ -38,7 +41,7 @@ def menu():
     table = Table()
     table.add_column("",style="purple")
     table.add_column("Main Menu", style="purple", header_style='purple')
-    create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Exit"])
+    create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Books By Author","Exit"])
     console.print(table)
 
 if __name__ == "__main__":
