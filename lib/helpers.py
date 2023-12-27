@@ -2,6 +2,7 @@
 from rich.console import Console
 from rich.table import Table
 from rich.prompt import Prompt
+from rich import box
 from models.Book import Book
 from models.Library import Library
 
@@ -22,24 +23,24 @@ def get_authors_books(author):
       authors_books.append(book)
   return authors_books
 
+
 def get_all_data():
-  libraries = Library.get_all()
   books = Book.get_all()
-  data = [] 
-  for library in libraries:
-     for book in books:
-        data.append({
-          "library": library.name,
-          "book_title": book.title,
-          "book_author": book.author
-        })
+  data = []
+  for book in books:
+     library = Library.find_by_id(book.library_id)
+     data.append({
+        'library': library.name,
+        'book_title': book.title,
+        'book_author': book.title
+     })
   return data
 ####
 def view_libraries():
     libraries_list = Library.get_all()
-    table = Table(title="Libraries")
+    table = Table(title="Libraries", box=box.SIMPLE_HEAVY)
     table.add_column("")
-    table.add_column("Name")
+    table.add_column("Library Name")
     for i, library in enumerate(libraries_list):
         table.add_row(f"{i+1}", library.name)
     console.print(table)
@@ -50,7 +51,7 @@ def view_library_books():
       library_name = Prompt.ask("Enter Library Name")
       library = Library.find_by_name(library_name)
       if library:
-          table=Table(title="Books")
+          table=Table(title="Books", box=box.SIMPLE_HEAVY)
           table.add_column("")
           table.add_column("Title")
           table.add_column("Author")
@@ -67,7 +68,7 @@ def search_book_by_location():
     book_title = Prompt.ask("Enter Book Title")
     books = books_(book_title)
     if books:
-      table = Table()
+      table = Table(box=box.SIMPLE_HEAVY)
       table.add_column("")
       table.add_column("Title")
       table.add_column("Author")
@@ -86,7 +87,7 @@ def author_books():
   author = Prompt.ask("Enter Author's name")
   books = get_authors_books(author)
   if books:
-    table = Table(title="Author's Book")
+    table = Table(title="Author's Book", box=box.SIMPLE_HEAVY)
     table.add_column("")
     table.add_column("Title")
     table.add_column("Author")
@@ -104,7 +105,7 @@ def view_all():
   data = get_all_data()
   if data:
     #create table
-    table = Table(title="Libraries and Books")
+    table = Table(title="Books", box=box.SIMPLE_HEAVY)
     table.add_column("")
     table.add_column("Library Name")
     table.add_column("Title")
@@ -116,5 +117,5 @@ def view_all():
     console.print("Data Does Not Exists", style = 'red')
 
 def exit_program():
-    console.print("Goodbye!", style="green")
+    console.print("GOODBYE!", style="green")
     exit()
