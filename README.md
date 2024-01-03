@@ -4,11 +4,13 @@ To start using this application:
 
 Fork and Clone this repo.
 
-run pipenv install
+CD to the directory
 
-then, run python lib/seed.py
+Run pipenv install
 
-then, run python lib/cli.py
+Then, run python lib/seed.py
+
+Then, run python lib/cli.py
 
 A menu should pop up that looks like this:
 
