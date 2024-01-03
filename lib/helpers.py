@@ -8,7 +8,7 @@ from models.Library import Library
 
 console = Console()
 ##helper
-def books_(book_title):
+def get_books_location(book_title):
     all_books = Book.get_all()
     books = []
     for book in all_books:
@@ -66,7 +66,7 @@ def view_library_books():
 
 def search_book_by_location():
     book_title = Prompt.ask("Enter Book Title")
-    books = books_(book_title)
+    books = get_books_location(book_title)
     if books:
       table = Table(box=box.SIMPLE_HEAVY)
       table.add_column("")
