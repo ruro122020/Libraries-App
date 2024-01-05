@@ -46,23 +46,21 @@ def view_libraries():
     console.print(table)
 
 def view_library_books():
-    while True:
-      view_libraries()
-      library_name = Prompt.ask("Enter Library Name")
-      library = Library.find_by_name(library_name)
-      if library:
-          table=Table(title="Books", box=box.SIMPLE_HEAVY)
-          table.add_column("")
-          table.add_column("Title")
-          table.add_column("Author")
-          table.add_column("Published Year")
-          books = library.books()
-          for i, book in enumerate(books):
-              table.add_row(f"{i+1}",str(book.title), str(book.author), str(book.published_year))
-          console.print(table)
-          break
-      else:
-          console.print("Invalid Name", style='red')
+    view_libraries()
+    library_name = Prompt.ask("Enter Library Name")
+    library = Library.find_by_name(library_name)
+    if library:
+        table=Table(title="Books", box=box.SIMPLE_HEAVY)
+        table.add_column("")
+        table.add_column("Title")
+        table.add_column("Author")
+        table.add_column("Published Year")
+        books = library.books()
+        for i, book in enumerate(books):
+            table.add_row(f"{i+1}",str(book.title), str(book.author), str(book.published_year))
+        console.print(table)
+    else:
+        console.print("Invalid Name", style='red')
 
 def search_book_by_location():
     book_title = Prompt.ask("Enter Book Title")
