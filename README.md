@@ -13,16 +13,13 @@ A menu should pop up that looks like this:
 ![alt text](./media/library%20main%20menu.png "Main Menu")
 
 
-Option 1 is to view all the libaries in the database
+Options:
 
-Option 2 is to view all the books in a library
-
-Option 3 is to view all the libraries that have a particular book you're looking for
-
-Option 4 is to view all the books written by an author
-
-Option 5 is to view all the libraries and books that are in the database
-
-Option 6 is to exit the program
+1. View all the libraries in the database.
+2. View all the books in a library.
+3. View all the libraries that have a particular book you're looking for.
+4. View all the books written by an author.
+5. View all the libraries and books that are in the database.
+6. Exit the program.
 
 [Here](https://www.youtube.com/watch?v=Ovl9lb_61ck) is a quick demo of the program. 
