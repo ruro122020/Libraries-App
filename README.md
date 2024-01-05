@@ -1,16 +1,12 @@
 # Library Project
 
-To start using this application:
+To start using this program:
 
-Fork and Clone this repo in your terminal
-
-CD to the directory
-
-Run pipenv install
-
-Then, run python lib/seed.py
-
-Then, run python lib/cli.py
+1. Fork and clone this repo in your terminal.
+2. Change directory to the project folder.
+3. Run `pipenv install`.
+4. Execute `python lib/seed.py`.
+5. Finally, run `python lib/cli.py`.
 
 A menu should pop up that looks like this:
 
