@@ -2,7 +2,7 @@
 
 To start using this application:
 
-Fork and Clone this repo.
+Fork and Clone this repo in your terminal
 
 CD to the directory
 
@@ -29,4 +29,4 @@ Option 5 is to view all the libraries and books that are in the database
 
 Option 6 is to exit the program
 
-[here](https://www.youtube.com/watch?v=Ovl9lb_61ck) is a quick demo of the program. 
+[Here](https://www.youtube.com/watch?v=Ovl9lb_61ck) is a quick demo of the program. 
