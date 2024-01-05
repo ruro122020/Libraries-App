@@ -32,7 +32,7 @@ def get_all_data():
      data.append({
         'library': library.name,
         'book_title': book.title,
-        'book_author': book.title
+        'book_author': book.author
      })
   return data
 ####

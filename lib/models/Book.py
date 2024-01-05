@@ -75,6 +75,7 @@ class Book:
     @classmethod
     def instance_from_db(cls, row):
         book = cls.all.get(row[0])
+        
         if book:
             book.title = row[1]
             book.author = row[2]
