@@ -45,7 +45,7 @@ def menu():
     table = Table()
     table.add_column("",style="purple")
     table.add_column("Main Menu", style="purple", header_style='purple')
-    create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Get Books By Author", "View All","Exit"])
+    create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Get Books By Author", "View All", "Exit"])
     console.print(table)
 
 if __name__ == "__main__":

@@ -8,9 +8,6 @@ from models.Library import Library
 
 console = Console()
 ##helper
-def create_rows(table, rows):
-  pass
-
 def create_columns(table, columns):
   for column_name in columns:
    table.add_column(column_name)
