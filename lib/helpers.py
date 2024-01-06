@@ -8,6 +8,13 @@ from models.Library import Library
 
 console = Console()
 ##helper
+def create_rows(table, rows):
+  pass
+
+def create_columns(table, columns):
+  for column_name in columns:
+   table.add_column(column_name)
+
 def get_books_location(book_title):
     all_books = Book.get_all()
     books = []
@@ -38,23 +45,22 @@ def get_all_data():
 ####
 def view_libraries():
     libraries_list = Library.get_all()
-    table = Table(title="Libraries", box=box.SIMPLE_HEAVY)
-    table.add_column("")
-    table.add_column("Library Name")
-    for i, library in enumerate(libraries_list):
+    if libraries_list:
+      table = Table(box=box.SIMPLE_HEAVY)
+      create_columns(table, ["", "Library Name"])
+      for i, library in enumerate(libraries_list):
         table.add_row(f"{i+1}", library.name)
-    console.print(table)
+      console.print(table)
+    else:
+      console.print("There are no libraries in the database", style='red')
 
 def view_library_books():
     view_libraries()
     library_name = Prompt.ask("Enter Library Name")
     library = Library.find_by_name(library_name)
     if library:
-        table=Table(title="Books", box=box.SIMPLE_HEAVY)
-        table.add_column("")
-        table.add_column("Title")
-        table.add_column("Author")
-        table.add_column("Published Year")
+        table=Table(box=box.SIMPLE_HEAVY)
+        create_columns(table, ["", "Title", "Author", "Published Year"])
         books = library.books()
         for i, book in enumerate(books):
             table.add_row(f"{i+1}",str(book.title), str(book.author), str(book.published_year))
