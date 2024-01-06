@@ -73,12 +73,7 @@ def search_book_by_location():
     books = get_books_location(book_title)
     if books:
       table = Table(box=box.SIMPLE_HEAVY)
-      table.add_column("")
-      table.add_column("Title")
-      table.add_column("Author")
-      table.add_column("Published Year")
-      table.add_column("Library")
-
+      create_columns(table, ["", "Title", "Author", "Published Year", "Library"])
       for i,book in enumerate(books):
         library = Library.find_by_id(book.library_id)
         table.add_row(f"{i+1}", str(book.title), str(book.author), str(book.published_year), str(library.name))
