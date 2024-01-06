@@ -99,12 +99,8 @@ def author_books():
 def view_all():
   data = get_all_data()
   if data:
-    #create table
-    table = Table(title="Books", box=box.SIMPLE_HEAVY)
-    table.add_column("")
-    table.add_column("Library Name")
-    table.add_column("Title")
-    table.add_column("Author")
+    table = Table(box=box.SIMPLE_HEAVY)
+    create_columns(table, ["", "Library Name", "Title", "Author"])
     for i, obj in enumerate(data):
       table.add_row(f"{i+1}", obj['library'], obj['book_title'], obj['book_author'])
     console.print(table)
