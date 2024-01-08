@@ -6,9 +6,6 @@ from rich.prompt import Prompt
 from helpers import (
     view_libraries,
     view_library_books,
-    search_book_by_location,
-    author_books,
-    view_all,
     exit_program,
 )
 
@@ -28,12 +25,11 @@ def main():
         elif choice == "2":
             view_library_books()
         elif choice == "3":
-            search_book_by_location()
+          pass
         elif choice == "4":
-            author_books()
+          pass
         elif choice == '5':
-            view_all()
-            pass
+          pass
         elif choice == "6":
             exit_program()
         else:
