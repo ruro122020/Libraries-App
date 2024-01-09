@@ -14,8 +14,20 @@ def create_columns(table, columns):
 ####
    
 #create library
+def add_library():
+  library_name = Prompt.ask("Library Name")
+  if library_name:
+    Library.create(library_name)
+    console.print(f"{library_name} ibrary has been created!", style="green")
+  else:
+    raise Exception(f"Oops something went wrong. Couldn't create {library_name} Library")
+  pass
 #delete library
+def delete_library():
+  pass
 #find library by name(attribute)
+def find_library_by_name():
+  pass
 #display all the objects(library) 
 def view_libraries():
     libraries_list = Library.get_all()
@@ -27,7 +39,7 @@ def view_libraries():
       console.print(table)
     else:
       console.print("There are no libraries in the database", style='red')
-#view related objects
+#view related objects(all the books in the library)
 def view_library_books():
     view_libraries()
     library_name = Prompt.ask("Enter Library Name")
@@ -43,10 +55,20 @@ def view_library_books():
         console.print("Invalid Name", style='red')
 
 ##create book
+def add_book():
+  pass
 #delete book
+def delete_book():
+  pass
 #find book by name(attribute)
+def find_book_by_name():
+  pass
 #display all the objects(books) 
+def view_all_books():
+  pass
 #view related objects(the library that book is in)
+def view_book_library():
+  pass
 
 
 def exit_program():

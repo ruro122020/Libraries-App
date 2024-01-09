@@ -4,9 +4,12 @@ from rich.table import Table
 from rich.prompt import Prompt
 
 from helpers import (
-    view_libraries,
-    view_library_books,
-    exit_program,
+  add_library,
+  delete_library,
+  find_library_by_name,
+  view_libraries,
+  view_library_books,
+  exit_program,
 )
 
 console = Console()
@@ -21,17 +24,32 @@ def main():
         menu()
         choice = Prompt.ask("What would you like to do?")
         if choice == "1":
-            view_libraries()
+          add_library()
+          pass
         elif choice == "2":
-            view_library_books()
+          delete_library()
+          pass
         elif choice == "3":
+          find_library_by_name()
           pass
         elif choice == "4":
+          view_libraries()
           pass
         elif choice == '5':
+          view_library_books()
           pass
         elif choice == "6":
-            exit_program()
+          pass
+        elif choice == "7":
+          pass
+        elif choice == "8":
+          pass
+        elif choice == "9":
+          pass
+        elif choice == "10":
+          pass
+        elif choice == "11":
+          pass
         else:
             console.print("Invalid Choice", style='red')
 
@@ -41,7 +59,19 @@ def menu():
     table = Table()
     table.add_column("",style="purple")
     table.add_column("Main Menu", style="purple", header_style='purple')
-    create_rows(table, ["View All Libraries", "View Books in Library", "Search Book Locations", "Get Books By Author", "View All", "Exit"])
+    create_rows(table, [
+         "Add A Library",
+         "Delete A Library",
+         "Find A Library",
+         "View All Libraries",
+         "View All Book in Library",
+         "Add A Book",
+         "Delete A Book",
+         "Find a Book",
+         "View All Books",
+         "View Book's Library Location",
+         "Exit"
+         ])
     console.print(table)
 
 if __name__ == "__main__":
