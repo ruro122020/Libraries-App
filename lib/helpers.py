@@ -81,7 +81,7 @@ def view_library_books():
             table.add_row(f"{i+1}",str(book.title), str(book.author), str(book.published_year))
         console.print(table)
     else:
-        console.print("Invalid Name", style='red')
+        console.print("Library does not exist", style='red')
 
 ##create book
 def add_book():
@@ -139,7 +139,17 @@ def view_all_books():
 
 #view related objects(the library that book is in)
 def view_book_library():
-  pass
+  title = input("Enter Book Title: ")
+  book = Book.find_by_title(title)
+  if book:
+    library = Library.find_by_id(book.library_id)
+    table = Table(box=box.SIMPLE_HEAVY)
+    create_columns(table, ["", "Book Title", "Library"])
+    table.add_row("", str(book.title), str(library.name))
+    console.print(table)
+  else:
+    console.print("Book does not exist", style='red')
+  
 def exit_program():
     console.print("GOODBYE!", style="green")
     exit()
