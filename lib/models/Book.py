@@ -16,30 +16,30 @@ class Book:
         return self._title
     @title.setter
     def title(self, title):
-        if isinstance(title, str) and len(title):
+        if isinstance(title, str) and len(title) >= 3:
             self._title = title.title()
         else:
-            raise ValueError('title must be of type string')
+            raise ValueError('title must be of type string and more than 2 characters')
         
     @property
     def author(self):
         return self._author 
     @author.setter
     def author(self, author):
-        if isinstance(author, str) and len(author):
+        if isinstance(author, str) and len(author) >= 3:
             self._author = author.title()
         else:
-            raise ValueError('author must be of type string')
+            raise ValueError('author must be of type string and more than 2 characters')
     
     @property
     def published_year(self):
         return self._published_year 
     @published_year.setter
     def published_year(self, published_year):
-        if isinstance(published_year, int) and published_year:
+        if isinstance(published_year, int) and published_year >= 1000:
             self._published_year = published_year
         else: 
-            raise ValueError("published_year must be of type int")
+            raise ValueError("published_year must be of type int and greater than the year 1000")
 
 
     @classmethod
@@ -109,11 +109,12 @@ class Book:
     
     @classmethod
     def find_by_title(cls, title):
+        new_title = title.title()
         sql = """
             SELECT * FROM books
             WHERE title = ? 
         """
-        row = CURSOR.execute(sql, (title,)).fetchone()
+        row = CURSOR.execute(sql, (new_title,)).fetchone()
         return cls.instance_from_db(row) if row else None
 
     def save(self):

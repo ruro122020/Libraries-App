@@ -13,10 +13,10 @@ class Library:
     
     @name.setter
     def name(self, name):
-        if isinstance(name, str) and len(name):
+        if isinstance(name, str) and len(name) >= 3:
             self._name = name.title()
         else:
-            raise ValueError('name must be of type string and more than 1 character')
+            raise ValueError('name must be of type string and more than 2 character')
     
     @classmethod
     def create_table(self):

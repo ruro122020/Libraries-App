@@ -1,7 +1,6 @@
 # lib/helpers.py
 from rich.console import Console
 from rich.table import Table
-from rich.prompt import Prompt
 from rich import box
 from models.Book import Book
 from models.Library import Library
@@ -17,13 +16,16 @@ def create_columns(table, columns):
 #create library
 def add_library():
   while True:
-    name = Prompt.ask("Library Name:")
+    name = input("Library Name: ")
     library_name = Library.find_by_name(name)
-   
     if not library_name:
-      Library.create(name)
-      console.print(f"{name} library has been created!", style="green")
-      break
+      try:
+        Library.create(name)
+        console.print(f"{name} library has been created!", style="green")
+        break
+      except Exception as exc:
+       console.print("Error creating library:", exc, style='red')
+
     else:
       console.print(f"Oops! {name} library already exist", style="red")
       console.print(f"Please try again", style="red")
@@ -32,7 +34,7 @@ def add_library():
 def delete_library():
   while True:
     view_libraries()
-    name = Prompt.ask("Which library would you like to delete?")
+    name = input("Which library would you like to delete? ")
     library_name = Library.find_by_name(name)
     print(library_name)
     if library_name:
@@ -46,7 +48,7 @@ def delete_library():
 
 #find library by name(attribute)
 def find_library_by_name():
-  name = Prompt.ask('Library Name:')
+  name = input('Library Name: ')
   library = Library.find_by_name(name)
   if library:
     table = Table(box=box.SIMPLE_HEAVY)
@@ -70,7 +72,7 @@ def view_libraries():
 #view related objects(all the books in the library)
 def view_library_books():
     view_libraries()
-    library_name = Prompt.ask("Enter Library Name")
+    library_name = input("Enter Library Name: ")
     library = Library.find_by_name(library_name)
     if library:
         table=Table(box=box.SIMPLE_HEAVY)
@@ -84,6 +86,21 @@ def view_library_books():
 
 ##create book
 def add_book():
+  title = input("Enter Title: ")
+  book_title = Book.find_by_title(title)
+  if not book_title:
+    try:
+      author = input("Enter Author: ")
+      published_year = input("Enter Published Year: ")
+      library_name = input("Enter library book belongs to: ")
+      library = Library.find_by_name(library_name)
+      Book.create(title, author, int(published_year), library.id)
+    except Exception as exc:
+      console.print("Error creating book: ", exc, style = 'red')
+  else:
+    console.print(f"Oops! {title} already exist", style = 'red')
+
+
   pass
 #delete book
 def delete_book():
