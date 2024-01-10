@@ -21,11 +21,10 @@ def add_library():
     if not library_name:
       try:
         Library.create(name)
-        console.print(f"{name} library has been created!", style="green")
+        console.print(f"{name} library has been added!", style="green")
         break
       except Exception as exc:
        console.print("Error creating library:", exc, style='red')
-
     else:
       console.print(f"Oops! {name} library already exist", style="red")
       console.print(f"Please try again", style="red")
@@ -94,7 +93,11 @@ def add_book():
       published_year = input("Enter Published Year: ")
       library_name = input("Enter library book belongs to: ")
       library = Library.find_by_name(library_name)
-      Book.create(title, author, int(published_year), library.id)
+      if not library:
+        console.print("Oops! libarary does not exist", style = 'red')
+      else:
+        Book.create(title, author, int(published_year), library.id)
+        console.print(f"{title} book has been added!", style="green")
     except Exception as exc:
       console.print("Error creating book: ", exc, style = 'red')
   else:

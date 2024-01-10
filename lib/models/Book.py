@@ -40,8 +40,7 @@ class Book:
             self._published_year = published_year
         else: 
             raise ValueError("published_year must be of type int and greater than the year 1000")
-
-
+        
     @classmethod
     def create_table(cls):
         sql = """
