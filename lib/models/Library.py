@@ -77,7 +77,7 @@ class Library:
 
     @classmethod
     def find_by_name(cls, name):
-        new_name = name.capitalize()
+        new_name = name.title()
         sql ="""
             SELECT * FROM libraries
             WHERE name is ?

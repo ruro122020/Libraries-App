@@ -27,10 +27,24 @@ def add_library():
     else:
       console.print(f"Oops! {name} library already exist", style="red")
       console.print(f"Please try again", style="red")
-
-  
 #delete library
 def delete_library():
+  while True:
+    view_libraries()
+    name = Prompt.ask("Which library would you like to delete?")
+    library_name = Library.find_by_name(name)
+    print(library_name)
+    if library_name:
+      library_books = library_name.books()
+      for book in library_books:
+        book.delete()
+      library_name.delete()
+      console.print(f"{library_name.name} library has been deleted!", style='red')
+    else:
+      console.print(f"{name} does not exist", style="red")
+      pass
+
+
   pass
 #find library by name(attribute)
 def find_library_by_name():
