@@ -41,7 +41,7 @@ def delete_library():
       for book in library_books:
         book.delete()
       library_name.delete()
-      console.print(f"{library_name.name} library and the books in library have been deleted!", style='red')
+      console.print(f"{library_name.name} library and the books in library have been deleted!", style='green')
     else:
       console.print(f"{name} does not exist", style="red")
 
@@ -56,7 +56,7 @@ def find_library_by_name():
     console.print(table)
   else:
     console.print(f"Oops! {name} does not exist", style='red')
-  pass
+  
 #display all the objects(library) 
 def view_libraries():
     libraries_list = Library.get_all()
@@ -103,22 +103,34 @@ def add_book():
   else:
     console.print(f"Oops! {title} already exist", style = 'red')
 
-
-  pass
 #delete book
 def delete_book():
-  pass
+  title = input("What book would you like to delete? ")
+  book_title = Book.find_by_title(title)
+  if book_title:
+    book_title.delete()
+    console.print(f"{title} has been deleted!", style="green")
+  else:
+    console.print(f"{title} does not exist", style="red")
+
 #find book by name(attribute)
 def find_book_by_name():
+  title = input('Book Title: ')
+  book = Book.find_by_title(title)
+  if book:
+    table = Table(box=box.SIMPLE_HEAVY)
+    create_columns(table,["", "Title", "Author", "Published Year" ])
+    table.add_row("", str(book.title), str(book.author), str(book.published_year))
+    console.print(table)
+  else:
+    console.print(f"Oops! {title} does not exist", style='red')
   pass
 #display all the objects(books) 
-def view_all_books():
+def view_all_books(): 
   pass
 #view related objects(the library that book is in)
 def view_book_library():
   pass
-
-
 def exit_program():
     console.print("GOODBYE!", style="green")
     exit()
