@@ -17,7 +17,7 @@ def create_columns(table, columns):
 #create library
 def add_library():
   while True:
-    name = Prompt.ask("Library Name")
+    name = Prompt.ask("Library Name:")
     library_name = Library.find_by_name(name)
    
     if not library_name:
@@ -27,6 +27,7 @@ def add_library():
     else:
       console.print(f"Oops! {name} library already exist", style="red")
       console.print(f"Please try again", style="red")
+
 #delete library
 def delete_library():
   while True:
@@ -39,15 +40,21 @@ def delete_library():
       for book in library_books:
         book.delete()
       library_name.delete()
-      console.print(f"{library_name.name} library has been deleted!", style='red')
+      console.print(f"{library_name.name} library and the books in library have been deleted!", style='red')
     else:
       console.print(f"{name} does not exist", style="red")
-      pass
 
-
-  pass
 #find library by name(attribute)
 def find_library_by_name():
+  name = Prompt.ask('Library Name:')
+  library = Library.find_by_name(name)
+  if library:
+    table = Table(box=box.SIMPLE_HEAVY)
+    create_columns(table,["", "Library Name"])
+    table.add_row(library.name)
+    console.print(table)
+  else:
+    console.print(f"Oops! {name} does not exist", style='red')
   pass
 #display all the objects(library) 
 def view_libraries():
