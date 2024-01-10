@@ -11,7 +11,7 @@ from helpers import (
   add_book,
   delete_book,
   find_book_by_name,
-  find_book_by_name,
+  view_all_books,
   view_book_library,
   exit_program,
 )
@@ -44,7 +44,7 @@ def main():
         elif choice == "8":
           find_book_by_name()
         elif choice == "9":
-          find_book_by_name()
+          view_all_books()
         elif choice == "10":
           view_book_library()
         elif choice == "11":

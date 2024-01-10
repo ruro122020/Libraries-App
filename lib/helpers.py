@@ -124,10 +124,19 @@ def find_book_by_name():
     console.print(table)
   else:
     console.print(f"Oops! {title} does not exist", style='red')
-    
+
 #display all the objects(books) 
 def view_all_books(): 
-  pass
+  book_list = Book.get_all()
+  if book_list:
+    table = Table(box=box.SIMPLE_HEAVY)
+    create_columns(table, ["", "Title", "Author", "Published Year"])
+    for i, book in enumerate(book_list):
+      table.add_row(f"{i+1}", str(book.title), str(book.author), str(book.published_year))
+    console.print(table)
+  else:
+    console.print("There are no libraries in the database", style='red')
+
 #view related objects(the library that book is in)
 def view_book_library():
   pass
