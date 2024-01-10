@@ -124,7 +124,7 @@ def find_book_by_name():
     console.print(table)
   else:
     console.print(f"Oops! {title} does not exist", style='red')
-  pass
+    
 #display all the objects(books) 
 def view_all_books(): 
   pass
