@@ -23,7 +23,7 @@ def main():
     while True:
         menu()
         choice = Prompt.ask("What would you like to do?")
-        if choice == "1":
+        if choice == "1": 
           add_library()
           pass
         elif choice == "2":

@@ -11,17 +11,24 @@ console = Console()
 def create_columns(table, columns):
   for column_name in columns:
    table.add_column(column_name)
+
 ####
    
 #create library
 def add_library():
-  library_name = Prompt.ask("Library Name")
-  if library_name:
-    Library.create(library_name)
-    console.print(f"{library_name} ibrary has been created!", style="green")
-  else:
-    raise Exception(f"Oops something went wrong. Couldn't create {library_name} Library")
-  pass
+  while True:
+    name = Prompt.ask("Library Name")
+    library_name = Library.find_by_name(name)
+   
+    if not library_name:
+      Library.create(name)
+      console.print(f"{name} library has been created!", style="green")
+      break
+    else:
+      console.print(f"Oops! {name} library already exist", style="red")
+      console.print(f"Please try again", style="red")
+
+  
 #delete library
 def delete_library():
   pass
