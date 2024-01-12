@@ -11,6 +11,12 @@ def create_columns(table, columns):
   for column_name in columns:
    table.add_column(column_name)
 
+# def check_library_exist(library_name):
+
+#     library_name = input("Enter library that book will belong to: ")
+#   else:
+#     return library
+  
 ####
    
 #create library
@@ -31,7 +37,6 @@ def add_library():
 
 #delete library
 def delete_library():
-  while True:
     view_libraries()
     name = input("Which library would you like to delete? ")
     library_name = Library.find_by_name(name)
@@ -41,7 +46,7 @@ def delete_library():
       for book in library_books:
         book.delete()
       library_name.delete()
-      console.print(f"{library_name.name} library and the books in library have been deleted!", style='green')
+      console.print(f"{library_name.name} library and its books have been deleted!", style='green')
     else:
       console.print(f"{name} does not exist", style="red")
 
@@ -88,18 +93,21 @@ def add_book():
   title = input("Enter Title: ")
   book_title = Book.find_by_title(title)
   if not book_title:
-    try:
-      author = input("Enter Author: ")
-      published_year = input("Enter Published Year: ")
-      library_name = input("Enter library book belongs to: ")
+    while True:
+      library_name = input("Enter library that book will belong to: ")
       library = Library.find_by_name(library_name)
       if not library:
         console.print("Oops! libarary does not exist", style = 'red')
+        console.print("Please try again", style = 'red')
       else:
-        Book.create(title, author, int(published_year), library.id)
-        console.print(f"{title} book has been added!", style="green")
-    except Exception as exc:
-      console.print("Error creating book: ", exc, style = 'red')
+        try:
+          author = input("Enter Author: ")
+          published_year = input("Enter Published Year: ")
+          Book.create(title, author, int(published_year), library.id)
+          console.print(f"{title} book has been added!", style="green")
+        except Exception as exc:
+          console.print("Error creating book: ", exc, style = 'red')
+        break
   else:
     console.print(f"Oops! {title} already exist", style = 'red')
 

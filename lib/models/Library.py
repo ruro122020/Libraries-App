@@ -96,16 +96,6 @@ class Library:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
-    def update(self):
-        sql = """
-            UPDATE libraries
-            SET name = ?
-            WHERE id = ?
-        """
-
-        CURSOR.execute(sql, (self.name, self.id))
-        CONN.commit()
-
     def delete(self):
         sql = """
             DELETE FROM libraries 
