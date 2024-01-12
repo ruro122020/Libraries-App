@@ -119,6 +119,7 @@ class Library:
         self.id = None
 
     def books(self):
+      #self is pointing to an instance of a library
         from models.Book import Book
         sql = """
             SELECT * FROM books

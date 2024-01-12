@@ -142,7 +142,7 @@ def view_book_library():
   title = input("Enter Book Title: ")
   book = Book.find_by_title(title)
   if book:
-    library = Library.find_by_id(book.library_id)
+    library = book.library()
     table = Table(box=box.SIMPLE_HEAVY)
     create_columns(table, ["", "Book Title", "Library"])
     table.add_row("", str(book.title), str(library.name))

@@ -148,4 +148,17 @@ class Book:
 
         del type(self).all[self.id]
         self.id = None
+
+    def library(self):
+     from models.Library import Library
+     
+     sql = """
+         SELECT * 
+         FROM libraries
+         WHERE id = ?
+    """
+    
+     row = CURSOR.execute(sql, (self.library_id,)).fetchone()
+     return Library.instance_from_db(row)
+
     
