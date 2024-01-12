@@ -68,7 +68,7 @@ def menu():
          "Delete A Book",
          "Find a Book",
          "View All Books",
-         "View Book's Library Location",
+         "View Book's Location",
          "Exit"
          ])
     console.print(table)

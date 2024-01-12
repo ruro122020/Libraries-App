@@ -104,7 +104,7 @@ def add_book():
           author = input("Enter Author: ")
           published_year = input("Enter Published Year: ")
           Book.create(title, author, int(published_year), library.id)
-          console.print(f"{title} book has been added!", style="green")
+          console.print(f"{title} has been added!", style="green")
         except Exception as exc:
           console.print("Error creating book: ", exc, style = 'red')
         break
