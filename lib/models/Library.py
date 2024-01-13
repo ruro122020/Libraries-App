@@ -70,7 +70,7 @@ class Library:
     def find_by_id(cls, id):
         sql = """
             SELECT * FROM libraries 
-            WHERE id = (?)
+            WHERE id = ?
         """
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
@@ -80,15 +80,14 @@ class Library:
         new_name = name.title()
         sql ="""
             SELECT * FROM libraries
-            WHERE name is (?)
+            WHERE name is ?
         """
         row = CURSOR.execute(sql, (new_name,)).fetchone()
         return cls.instance_from_db(row) if row else None
 
     def save(self):
         sql = """
-            INSERT INTO libraries (name) 
-            VALUES (?)
+            INSERT INTO libraries (name) VALUES (?)
         """
 
         CURSOR.execute(sql, (self.name,))
@@ -100,7 +99,7 @@ class Library:
     def delete(self):
         sql = """
             DELETE FROM libraries 
-            WHERE id = (?)
+            WHERE id = ?
         """
 
         CURSOR.execute(sql, (self.id,))
@@ -114,7 +113,7 @@ class Library:
         from models.Book import Book
         sql = """
             SELECT * FROM books
-            WHERE library_id = (?)
+            WHERE library_id = ?
         """
 
         rows = CURSOR.execute(sql, (self.id,)).fetchall()

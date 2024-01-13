@@ -100,7 +100,7 @@ class Book:
     def find_by_id(cls, id):
         sql = """
             SELECT * FROM books
-            WHERE id = (?)
+            WHERE id = ?
         """
 
         row = CURSOR.execute(sql, (id,)).fetchone()
@@ -111,7 +111,7 @@ class Book:
         new_title = title.title()
         sql = """
             SELECT * FROM books
-            WHERE title = (?)
+            WHERE title = ? 
         """
         row = CURSOR.execute(sql, (new_title,)).fetchone()
         return cls.instance_from_db(row) if row else None
@@ -131,7 +131,7 @@ class Book:
     def delete(self):
         sql = """
             DELETE FROM books 
-            WHERE id = (?)
+            WHERE id = ?
         """
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
@@ -145,7 +145,7 @@ class Book:
      sql = """
          SELECT * 
          FROM libraries
-         WHERE id = (?)
+         WHERE id = ?
     """
     
      row = CURSOR.execute(sql, (self.library_id,)).fetchone()
