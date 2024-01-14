@@ -16,7 +16,7 @@ class Book:
         return self._title
     @title.setter
     def title(self, title):
-        if isinstance(title, str) and len(title) >= 3:
+        if type(title) == str and len(title) >= 3:
             self._title = title.title()
         else:
             raise ValueError('title must be of type string and more than 2 characters')
@@ -26,7 +26,7 @@ class Book:
         return self._author 
     @author.setter
     def author(self, author):
-        if isinstance(author, str) and len(author) >= 3:
+        if type(author) == str and len(author) >= 3:
             self._author = author.title()
         else:
             raise ValueError('author must be of type string and more than 2 characters')
@@ -36,10 +36,20 @@ class Book:
         return self._published_year 
     @published_year.setter
     def published_year(self, published_year):
-        if isinstance(published_year, int) and published_year >= 1000:
+        if type(published_year) == int and published_year >= 1000:
             self._published_year = published_year
         else: 
             raise ValueError("published_year must be of type int and greater than the year 1000")
+        
+    @property
+    def library_id(self):
+        return self._library_id
+    @library_id.setter
+    def library_id(self, library_id):
+        if type(library_id) == int:
+            self._library_id = library_id
+        else:
+            raise ValueError("library_id must be of type integer")
         
     @classmethod
     def create_table(cls):
@@ -59,6 +69,7 @@ class Book:
     @classmethod
     def drop_table(cls):
         sql = """
+
             DROP TABLE IF EXISTS books
         """
 
