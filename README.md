@@ -15,11 +15,16 @@ A menu should pop up that looks like this:
 
 Options:
 
-1. View all the libraries in the database.
-2. View all the books in a library.
-3. View all the libraries that have a particular book you're looking for.
-4. View all the books written by an author.
-5. View all the libraries and books that are in the database.
-6. Exit the program.
+1. You can add a library to the database.
+2. You can delete a library from the database.
+3. You can view a library's information.
+4. View all the libraries in the database.
+5. View all the books in a library.
+6. You can add a book to the database.
+7. You can delete a book from the database.
+8. You can view a book's information. 
+9. View all the books.
+10. View what library a book is in.
+11. Exit the program.
 
 [Here](https://www.youtube.com/watch?v=Ovl9lb_61ck) is a quick demo of the program. 

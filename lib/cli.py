@@ -61,12 +61,12 @@ def menu():
     create_rows(table, [
          "Add A Library",
          "Delete A Library",
-         "Find A Library",
+         "View A Library's details",
          "View All Libraries",
          "View All Book in Library",
          "Add A Book",
          "Delete A Book",
-         "Find a Book",
+         "View a Book's details",
          "View All Books",
          "View Book's Location",
          "Exit"
