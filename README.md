@@ -27,4 +27,4 @@ Options:
 10. View what library a book is in.
 11. Exit the program.
 
-[Here](https://www.youtube.com/watch?v=Ovl9lb_61ck) is a quick demo of the program. 
+[Here](https://youtu.be/SMCgjcqVTVE?si=RaifUWQk4UYOqyOg) is a quick demo of the program. 
